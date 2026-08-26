@@ -22,31 +22,40 @@ transformers 若是 **v5**，和网上多数 v4 教程有差异：
 ## 按顺序运行
 
 ```bash
-python 00a_tensor_basics.py          # 约 3 秒
-python 00b_one_forward.py            # 约 5 秒
-python 00c_manual_decode.py          # 约 8 秒
-python 00d_kv_cache.py               # 约 30 秒（含性能对比）
-python 00e_compare_with_generate.py  # 约 7 秒
+python 00a_tensor_basics/01_shape.py              # 地基 01～08
+python 00b_one_forward/02_tokenize.py             # 一次 forward
+python 00c_manual_decode/01_run_loop.py           # 手写循环
+python 00d_kv_cache/01_cached_loop.py             # KV Cache
+python 00e_compare_with_generate/run_all.py       # 与 generate() 对齐
 ```
 
-必须先 `cd` 到本目录再运行：脚本要 `import common`，`00e` 还会用 `importlib`
-加载 `00c` 和 `00d`，都依赖当前工作目录。在别处运行会报 `No module named 'common'`。
+每个主题都拆成了独立小文件，目录里有 `README.md`。想一次跑完某一主题：
+
+```bash
+python 00a_tensor_basics/run_all.py
+python 00b_one_forward/run_all.py
+python 00c_manual_decode/run_all.py
+python 00d_kv_cache/run_all.py          # 含长序列加速比，约 30 秒
+python 00e_compare_with_generate/run_all.py
+```
+
+必须先 `cd` 到本目录再运行：脚本要 `import common`。
 
 不想激活环境的话，也可以直接用解释器路径调用：
 
 ```bash
-../local/venvs/.venv-hf/bin/python 00a_tensor_basics.py
+../local/venvs/.venv-hf/bin/python 00b_one_forward/run_all.py
 ```
 
 ## 每个脚本在讲什么
 
 | 脚本 | 主题 | 跑完你应该能回答 |
 | --- | --- | --- |
-| `00a_tensor_basics.py` | PyTorch 地基 | 转置为什么不搬数据？GPU 计时为什么必须同步？ |
-| `00b_one_forward.py` | 一次 forward | forward 吃什么吐什么？为什么只用最后一行 logits？ |
-| `00c_manual_decode.py` | 手写生成循环 | 一次 forward 只产出一个 token 意味着什么？ |
-| `00d_kv_cache.py` | KV Cache | 缓存的是什么？什么条件下它才真的加速？ |
-| `00e_compare_with_generate.py` | 与官方对齐 | `generate()` 到底替我做了哪些事？ |
+| `00a_tensor_basics/` | PyTorch 地基（01～08） | 转置为什么不搬数据？GPU 计时为什么必须同步？ |
+| `00b_one_forward/` | 一次 forward | forward 吃什么吐什么？为什么只用最后一行 logits？ |
+| `00c_manual_decode/` | 手写生成循环 | 一次 forward 只产出一个 token 意味着什么？ |
+| `00d_kv_cache/` | KV Cache | 缓存的是什么？什么条件下它才真的加速？ |
+| `00e_compare_with_generate/` | 与官方对齐 | `generate()` 到底替我做了哪些事？ |
 
 `common.py` 是公共工具（模型路径、加载、prompt 构造、计时），不单独运行。
 

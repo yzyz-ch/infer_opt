@@ -19,7 +19,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # 仓库根目录下的 local/models/，不写本机绝对路径
 _REPO_ROOT = Path(__file__).resolve().parent.parent
-MODEL_PATH = str(_REPO_ROOT / "local" / "models" / "Qwen3-0.6B")
+MODEL_PATH = str(_REPO_ROOT / "local" / "models" / "Qwen3-0.6B")# Qwen3-0.6B 模型路径 
 
 # 计算设备。有 N 卡就用 GPU，否则退回 CPU（0.6B 在 CPU 上也能跑，只是慢）
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -29,6 +29,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 #            Ada 架构（RTX 40 系）原生支持，是当前推理的默认选择。
 # CPU 上对 bf16 支持差，所以退回 float32。
 DTYPE = torch.bfloat16 if DEVICE == "cuda" else torch.float32
+print(f"DTYPE: {DTYPE}")
 
 
 # ---------------------------------------------------------------------------
