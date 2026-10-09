@@ -14,6 +14,8 @@ local/
   wheels/         体积过大的安装包（如 flash-attn 的 wheel）
 ```
 
+三套环境的 Python、PyTorch 和框架版本，以及各自对应哪条脚本，见 [`stage1/environment_versions.md`](../stage1/environment_versions.md)。
+
 ## 激活环境
 
 ```bash

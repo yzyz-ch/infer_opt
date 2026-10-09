@@ -18,6 +18,9 @@ __pycache__/
 local/*
 !local/README.md
 
+# 本机环境版本记录。路径在 stage1/，内容跟着 local/venvs 走，不进 git。
+stage1/environment_versions.md
+
 
 # ---------------------------------------------------------------------------
 # 虚拟环境（防止以后又建到 local 以外）
