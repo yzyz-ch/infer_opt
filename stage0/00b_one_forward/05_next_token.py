@@ -1,18 +1,10 @@
 """05 从 logits 到下一个 token。"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import _path  # noqa: F401
-
 import torch
-
-from common import banner
 
 
 def run(tokenizer, logits):
-    banner("4. 从 logits 到下一个 token")
+    print("##### 4. 从 logits 到下一个 token ###")
     last_logits = logits[0, -1, :]
     print(f"last_logits.shape = {tuple(last_logits.shape)}   # 词表里每个词一个分数")
     print(f"分数范围: {last_logits.min().item():.2f} ~ {last_logits.max().item():.2f}")
@@ -34,7 +26,6 @@ def run(tokenizer, logits):
     print("回答第四个问题：logits 经过 argmax（greedy）或 softmax + 抽样，变成一个 token id。")
     print("阶段 0 只用 argmax，因为它没有随机性，方便和 generate() 逐字对比。")
     return next_id
-
 
 if __name__ == "__main__":
     from importlib import import_module

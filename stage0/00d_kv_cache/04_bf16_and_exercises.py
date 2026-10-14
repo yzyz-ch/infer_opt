@@ -1,16 +1,8 @@
 """04 结果会和 00c 不一样（bf16 数值路径）。"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import _path  # noqa: F401
-
-from common import banner
-
 
 def run():
-    banner("4. 一个必须知道的坑：结果会和 00c 不一样")
+    print("##### 4. 一个必须知道的坑：结果会和 00c 不一样 ###")
     print("""
 把 00c 和 00d 的输出放一起看，你会发现两段话不完全相同。
 
@@ -33,7 +25,7 @@ bf16 只有 8 位尾数，这点顺序差异就足以让 logits 差个 0.05 左�
 00e 会把这件事彻底讲清楚，并给出正确的验证方法。
 """)
 
-    banner("动手改改看")
+    print("##### 动手改改看 ###")
     print("""
 1. 把 decode 阶段的 input_ids=cur 改成喂整条序列，同时保留 cache。
    会报错还是结果错？想想为什么。
@@ -46,7 +38,6 @@ bf16 只有 8 位尾数，这点顺序差异就足以让 logits 差个 0.05 左�
 4. 算一算：如果模型是 7B（32层、32个kv头、head_dim 128），
    8192 上下文的 KV Cache 要占多少显存？
 """)
-
 
 if __name__ == "__main__":
     run()

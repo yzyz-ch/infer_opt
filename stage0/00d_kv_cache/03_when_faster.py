@@ -7,11 +7,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import _path  # noqa: F401
 
 from cached_loop import benchmark
-from common import banner, load_model_and_tokenizer
+from common import load_model_and_tokenizer
 
 
 def run(model):
-    banner("3. 关键问题：什么时候才真的加速")
+    print("##### 3. 关键问题：什么时候才真的加速 ###")
     print("在不同上下文长度下，各生成 32 个 token，对比两种方式：")
     print()
     print(f"  {'上下文长度':>10} {'重算全部':>12} {'用缓存':>12} {'加速比':>8}")
@@ -40,7 +40,6 @@ def run(model):
 这也是这个阶段最该带走的思维方式：
 任何优化都有生效范围，先量出范围，再决定用不用。
 """)
-
 
 if __name__ == "__main__":
     _tok, model = load_model_and_tokenizer()

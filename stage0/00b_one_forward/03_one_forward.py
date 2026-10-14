@@ -8,11 +8,11 @@ import _path  # noqa: F401
 
 import torch
 
-from common import Timer, banner
+from common import Timer
 
 
 def run(model, input_ids):
-    banner("2. 一次 forward")
+    print("##### 2. 一次 forward ###")
     with torch.inference_mode():
         with Timer() as t_cold:
             model(input_ids=input_ids)
@@ -50,7 +50,6 @@ def run(model, input_ids):
     )
     print("  记住这个数，第 3 节会说明其中绝大部分是白算的。")
     return logits
-
 
 if __name__ == "__main__":
     from importlib import import_module

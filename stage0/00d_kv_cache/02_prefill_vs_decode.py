@@ -7,11 +7,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import _path  # noqa: F401
 
 from cached_loop import kv_cache_bytes_per_token
-from common import banner
 
 
 def run(model, records):
-    banner("2. Prefill 和 Decode 是两种不同的活")
+    print("##### 2. Prefill 和 Decode 是两种不同的活 ###")
     prefill = records[0]
     decodes = records[1:]
     decode_times = sorted(r["elapsed_ms"] for r in decodes)
@@ -57,7 +56,6 @@ prefill 摊到每个 token 上非常划算，decode 则完全是在"为了 1 个
     print()
     print("  显存换时间，就是 KV Cache 的本质。阶段 4 做的 PagedAttention，")
     print("  解决的正是「这块显存怎么分配才不浪费」的问题。")
-
 
 if __name__ == "__main__":
     from importlib import import_module

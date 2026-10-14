@@ -7,9 +7,7 @@
 
 import torch
 
-from util import banner
-
-banner("1. shape：tensor 每个维度有多大")
+print("##### 1. shape：tensor 每个维度有多大 ###")
 
 x = torch.zeros(2, 3, 4)
 print("x = torch.zeros(2, 3, 4)")

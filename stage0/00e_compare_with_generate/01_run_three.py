@@ -10,7 +10,6 @@ import torch
 
 from common import (
     DEFAULT_QUESTION,
-    banner,
     build_prompt,
     get_eos_ids,
     load_model_and_tokenizer,
@@ -23,7 +22,7 @@ MAX_NEW_TOKENS = 64
 def run(tokenizer=None, model=None):
     c_mod, d_mod = load_loops()
     if tokenizer is None or model is None:
-        banner("0. 准备")
+        print("##### 0. 准备 ###")
         tokenizer, model = load_model_and_tokenizer()
 
     prompt = build_prompt(tokenizer, DEFAULT_QUESTION)
@@ -33,7 +32,7 @@ def run(tokenizer=None, model=None):
     print(f"\n问题: {DEFAULT_QUESTION}")
     print(f"prompt 长度: {prompt_ids.shape[1]} tokens")
 
-    banner("1. 三种方式各跑一遍")
+    print("##### 1. 三种方式各跑一遍 ###")
     print("(1) 无缓存手写循环 —— 00c 的实现")
     ids_nocache, _ = c_mod.manual_greedy_decode(
         model, tokenizer, prompt, MAX_NEW_TOKENS, verbose=False
@@ -66,7 +65,6 @@ def run(tokenizer=None, model=None):
         "ids_cache": ids_cache,
         "ids_generate": ids_generate,
     }
-
 
 if __name__ == "__main__":
     run()

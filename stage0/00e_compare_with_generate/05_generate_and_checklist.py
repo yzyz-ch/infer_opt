@@ -1,16 +1,8 @@
 """05 generate() 替你做了什么，以及自查清单。"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import _path  # noqa: F401
-
-from common import banner
-
 
 def run():
-    banner("5. generate() 到底替你做了什么")
+    print("##### 5. generate() 到底替你做了什么 ###")
     print("""
 把阶段 0 走一遍之后，这个问题就有了具体答案：
 
@@ -30,7 +22,7 @@ def run():
 7~9 留到后面的阶段再补。
 """)
 
-    banner("阶段 0 完成标准自查")
+    print("##### 阶段 0 完成标准自查 ###")
     print("""
 对照下面几条，能不看代码讲清楚就算过关：
 
@@ -45,7 +37,6 @@ def run():
 
 答不上来的那条，回去重跑对应的脚本。
 """)
-
 
 if __name__ == "__main__":
     run()

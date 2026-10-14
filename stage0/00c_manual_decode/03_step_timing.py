@@ -1,16 +1,8 @@
 """03 每步耗时：短序列上看不到变慢。"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import _path  # noqa: F401
-
-from common import banner
-
 
 def run(records):
-    banner("3. 每步耗时：先别急着下结论")
+    print("##### 3. 每步耗时：先别急着下结论 ###")
     n = len(records)
     times = [r["elapsed_ms"] for r in records]
     print(
@@ -52,7 +44,6 @@ def run(records):
 
 想看到增长趋势，得把序列拉长到固定开销盖不住的程度。见 04_length_sweep.py。
 """)
-
 
 if __name__ == "__main__":
     from importlib import import_module

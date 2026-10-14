@@ -46,7 +46,7 @@ infer_opt/
   local/          本机大文件，不进 git（环境、权重、whl）
 ```
 
-`local/` 只跟踪一份说明，见 [`local/README.md`](local/README.md)。虚拟环境、模型权重和体积过大的安装包都放在那里，不会提交到仓库。
+`local/` 只跟踪一份说明，见 [`local/guide.md`](local/guide.md)。虚拟环境、模型权重和体积过大的安装包都放在那里，不会提交到仓库。
 
 ## 学习路线
 
@@ -65,7 +65,7 @@ infer_opt/
 | 8 | 未开始 | 追踪量化权重从文件走到 kernel |
 | 9 | 未开始 | 在两张 GPU 上实现最小 Tensor Parallel |
 
-阶段 0 的入口：[`stage0/README.md`](stage0/README.md)。
+阶段 0 的入口：[`stage0/guide.md`](stage0/guide.md)。
 
 ## 怎么跑
 
@@ -83,6 +83,7 @@ python 00a_tensor_basics.py
 ## 约定
 
 - 计划在 `plan/`，代码和笔记在 `stageN/`，大文件在 `local/`。
+- 只有仓库根目录使用 `README.md`。子目录里的说明文档叫 `guide.md`。
 - 每周至少留下一个可运行脚本、一组结果或一页总结。
 - 性能结论必须绑定测量条件：短上下文上成立的优化，长上下文上未必成立。
 - 两个都正确的实现，在 bf16 下输出可以不完全一样；对齐时要比 token 路径，不要只比文字。

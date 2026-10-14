@@ -8,11 +8,11 @@ import _path  # noqa: F401
 
 import torch
 
-from common import banner, load_model_and_tokenizer
+from common import load_model_and_tokenizer
 
 
 def run():
-    banner("0. 加载模型")
+    print("##### 0. 加载模型 ###")
     tokenizer, model = load_model_and_tokenizer()
     if torch.cuda.is_available():
         print(
@@ -21,7 +21,6 @@ def run():
         )
         print("       约等于 0.6B 参数 x 2 字节(bf16)，和预期吻合")
     return tokenizer, model
-
 
 if __name__ == "__main__":
     run()

@@ -1,7 +1,7 @@
 # local：不进 git 的本机文件
 
 这个目录存放体积过大、无法推送到 GitHub 的本机产物。
-除了本 README，目录内其它内容都被 `.gitignore` 忽略。
+除了本说明，目录内其它内容都被 `.gitignore` 忽略。
 
 ```text
 local/

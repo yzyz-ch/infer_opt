@@ -1,18 +1,10 @@
 """04 为什么只看最后一个位置。"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import _path  # noqa: F401
-
 import torch
-
-from common import banner
 
 
 def run(tokenizer, model, input_ids, logits):
-    banner("3. 为什么只看最后一个位置")
+    print("##### 3. 为什么只看最后一个位置 ###")
     print("logits 有 seq_len 行，每一行是'看完这个位置为止的内容后，下一个词该是什么'。")
     print()
     print("挑几个位置看看模型分别在预测什么:")
@@ -53,7 +45,6 @@ def run(tokenizer, model, input_ids, logits):
     print(f"  最大差异 {maxdiff.item():.4f}，argmax 仍然一致。")
     print("  bf16 下改变矩阵形状会走不同的 kernel，结果有微小浮动，这是正常的。")
     print("  所以后面对比时要比 token id，不要比 logits 数值。")
-
 
 if __name__ == "__main__":
     from importlib import import_module

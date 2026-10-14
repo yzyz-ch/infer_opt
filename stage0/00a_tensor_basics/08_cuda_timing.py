@@ -11,9 +11,9 @@ import time
 
 import torch
 
-from util import banner, cuda_sync
+from util import cuda_sync
 
-banner("8. CUDA 计时与 synchronize（反直觉实验二）")
+print("##### 8. CUDA 计时与 synchronize（反直觉实验二） ###")
 
 if not torch.cuda.is_available():
     print("  当前没有 GPU，跳过这一节")

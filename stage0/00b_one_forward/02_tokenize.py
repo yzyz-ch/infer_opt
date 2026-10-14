@@ -6,11 +6,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import _path  # noqa: F401
 
-from common import DEFAULT_QUESTION, banner, build_prompt
+from common import DEFAULT_QUESTION, build_prompt
 
 
 def run(tokenizer, model):
-    banner("1. 文本 -> token id")
+    print("##### 1. 文本 -> token id ###")
     print(f"你的问题原文:\n  {DEFAULT_QUESTION}")
 
     prompt = build_prompt(tokenizer, DEFAULT_QUESTION)
@@ -43,7 +43,6 @@ def run(tokenizer, model):
     print("回答第一个问题：文本在 tokenizer(...) 这一步变成 token id，")
     print("在这之后，模型内部再也见不到'文字'，只有整数和浮点数。")
     return input_ids
-
 
 if __name__ == "__main__":
     from importlib import import_module

@@ -7,14 +7,12 @@
 
 import torch
 
-from util import banner
-
-banner("2. dtype：每个数字用什么格式存")
+print("##### 2. dtype：每个数字用什么格式存 ###")
 
 for dt in (torch.float32, torch.float16, torch.bfloat16, torch.int8):
-    t = torch.zeros(1000, 1000, dtype=dt)
+    t = torch.zeros(1024, 1024, dtype=dt)
     mb = t.numel() * t.element_size() / 1024**2  # numel() 返回 tensor 中元素总数
-    print(f"  {str(dt):18} 每个数 {t.element_size()} 字节, 1000x1000 占 {mb:6.2f} MB")
+    print(f"  {str(dt):18} 每个数 {t.element_size()} 字节(Byte), 1024*1024个数 占 {mb:6.2f} MB")
 
 print()
 print("为什么推理几乎都用 bfloat16 而不是 float32：")
@@ -33,7 +31,6 @@ except RuntimeError as e:
 print()
 print("动手改改看：")
 print("  试着让 float32 和 bfloat16 相乘成功，需要加哪一步？")
-
 
 print("--------------------------------")
 

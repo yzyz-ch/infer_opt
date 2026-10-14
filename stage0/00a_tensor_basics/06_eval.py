@@ -8,9 +8,7 @@
 import torch
 import torch.nn as nn
 
-from util import banner
-
-banner("6. eval()：切换到推理模式")
+print("##### 6. eval()：切换到推理模式 ###")
 
 drop_net = nn.Sequential(nn.Linear(4, 4), nn.Dropout(p=0.5))
 inp = torch.ones(1, 4)

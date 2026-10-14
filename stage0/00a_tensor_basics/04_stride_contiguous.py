@@ -9,9 +9,8 @@
 
 import torch
 
-from util import banner
-
-banner("4. stride 与 contiguous（反直觉实验一）") 
+#contiguous() 函数用于确保 Tensor 在内存中是连续存储的。
+print("##### 4. stride 与 contiguous（反直觉实验一） ###")
 
 m = torch.arange(12).reshape(3, 4)
 print("原始 tensor m = arange(12).reshape(3, 4):")

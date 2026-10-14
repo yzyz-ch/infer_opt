@@ -29,7 +29,7 @@ python 00d_kv_cache/01_cached_loop.py             # KV Cache
 python 00e_compare_with_generate/run_all.py       # 与 generate() 对齐
 ```
 
-每个主题都拆成了独立小文件，目录里有 `README.md`。想一次跑完某一主题：
+每个主题都拆成了独立小文件，目录里有 `guide.md`。想一次跑完某一主题：
 
 ```bash
 python 00a_tensor_basics/run_all.py

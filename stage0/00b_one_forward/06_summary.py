@@ -1,16 +1,8 @@
 """06 小结与练习。"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import _path  # noqa: F401
-
-from common import banner
-
 
 def run(tokenizer, input_ids, next_id):
-    banner("小结：我们现在只前进了一个 token")
+    print("##### 小结：我们现在只前进了一个 token ###")
     print(f"""
 输入 {input_ids.shape[1]} 个 token，跑一次 forward，得到了第 1 个新 token: \
 {tokenizer.decode([next_id])!r}
@@ -25,7 +17,7 @@ def run(tokenizer, input_ids, next_id):
 下一步: 00c_manual_decode/ 把这个循环真正写出来。
 """)
 
-    banner("动手改改看")
+    print("##### 动手改改看 ###")
     print("""
 1. 把 common.py 里 build_prompt 的 enable_thinking 改成 True，
    重新跑 02_tokenize.py，看看 prompt 文本多了什么，input_ids 变长了多少。
@@ -37,7 +29,6 @@ def run(tokenizer, input_ids, next_id):
        next_id = torch.multinomial(probs, num_samples=1).item()
    多跑几次，结果还一样吗？
 """)
-
 
 if __name__ == "__main__":
     from importlib import import_module

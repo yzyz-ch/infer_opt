@@ -7,9 +7,7 @@
 
 import torch
 
-from util import banner
-
-banner("7. inference_mode()：不记录反向传播需要的信息")
+print("##### 7. inference_mode()：不记录反向传播需要的信息 ###")
 
 w = torch.ones(2, 2, requires_grad=True)
 

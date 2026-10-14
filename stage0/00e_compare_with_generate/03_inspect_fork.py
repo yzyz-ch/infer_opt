@@ -1,15 +1,7 @@
 """03 把分歧的那一步拆开看。"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import _path  # noqa: F401
-
 import torch
 from transformers import DynamicCache
-
-from common import banner
 
 
 def show_tokens(tokenizer, ids, limit=12):
@@ -19,7 +11,7 @@ def show_tokens(tokenizer, ids, limit=12):
 
 
 def run(tokenizer, model, prompt_ids, ids_nocache, d_nc):
-    banner("3. 把分歧的那一步拆开看")
+    print("##### 3. 把分歧的那一步拆开看 ###")
     if d_nc is None:
         print("这次没有出现分歧（有一定偶然性），跳过本节。")
         print("多换几个问题试试，很容易复现。")
@@ -96,7 +88,6 @@ def run(tokenizer, model, prompt_ids, ids_nocache, d_nc):
       - 人工评测输出质量（最终兜底）
   拿"文字一模一样"当唯一标准，会冤枉很多其实正确的实现。
 """)
-
 
 if __name__ == "__main__":
     from importlib import import_module

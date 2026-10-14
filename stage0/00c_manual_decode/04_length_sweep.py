@@ -8,11 +8,11 @@ import _path  # noqa: F401
 
 import torch
 
-from common import Timer, banner, load_model_and_tokenizer
+from common import Timer, load_model_and_tokenizer
 
 
 def run(model):
-    banner("4. 换个尺度：forward 耗时 vs 序列长度")
+    print("##### 4. 换个尺度：forward 耗时 vs 序列长度 ###")
     print("用随机 token 构造不同长度的输入，各测 10 次取平均：")
     print()
     print(f"  {'序列长度':>8} {'forward耗时':>12} {'每token':>10}   相对 16 长度")
@@ -48,7 +48,6 @@ def run(model):
 "KV Cache 能加速"这句话在 4096 上下文是对的，在 50 个 token 上却是错的。
 00d 会用数字把这句话验证一遍。
 """)
-
 
 if __name__ == "__main__":
     _tok, model = load_model_and_tokenizer()

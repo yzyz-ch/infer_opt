@@ -7,9 +7,7 @@
 
 import torch
 
-from util import banner
-
-banner("3. device：数据放在哪块硬件上")
+print("##### 3. device：数据放在哪块硬件上 ###")
 
 cpu_t = torch.ones(2, 2)
 print(f"  默认创建在 CPU: {cpu_t.device}")

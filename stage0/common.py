@@ -58,7 +58,11 @@ def load_model_and_tokenizer(verbose: bool = True):
     model.eval()
 
     if verbose:
-        n_params = sum(p.numel() for p in model.parameters())
+        # 每块权重是一个张量，numel() 是这块里有多少个数字。
+        # 模型里这样的张量不多（几十到一两百个），先收成列表再求和，读起来更直白。
+        # 加总后就是参数量（0.6B 模型大约是 6 亿）。
+        param_counts = [p.numel() for p in model.parameters()]
+        n_params = sum(param_counts)
         print(f"[load] 模型类型   : {type(model).__name__}")
         print(f"[load] 参数量     : {n_params / 1e9:.3f} B")
         print(f"[load] 权重 dtype : {next(model.parameters()).dtype}")
@@ -80,8 +84,11 @@ def build_prompt(tokenizer, question: str = DEFAULT_QUESTION) -> str:
     """把用户的一句话，套上 Qwen3 的对话模板，变成模型真正看到的文本。
 
     为什么不直接把问题原文喂给模型？
-    因为 Qwen3-0.6B 是"指令模型"，它在训练时看到的输入长这样：
-        <|im_start|>user\n问题<|im_end|>\n<|im_start|>assistant\n
+    因为 Qwen3-0.6B 是"指令模型"，它在训练时看到的输入长这样
+    （每一处换行就是模板字符串里的一个 \n）：
+        <|im_start|>user
+        问题<|im_end|>
+        <|im_start|>assistant
     只有按这个格式喂，它才知道"现在轮到我回答了，答完要收尾"。
     直接喂裸问题，它会退化成续写机器，一直复读停不下来。
 
@@ -133,6 +140,9 @@ class Timer:
     """配合 with 使用的计时器，进出时都会同步 GPU。
 
     用法:
+    with 用来包住一段代码，保证进入时做一次准备，离开时一定做一次收尾。中间即使报错，收尾也会执行。
+    with 后面的那个对象必须有 __enter__ 和 __exit__ 这两个方法。名字两边各有两条下划线，而且都是小写。
+    with 进入代码块时调用 __enter__，离开时调用 __exit__。缺了其中任意一个，运行时会报错，说这个对象不能当上下文管理器使用。
         with Timer() as t:
             ...要计时的代码...
         print(t.elapsed)
@@ -140,18 +150,10 @@ class Timer:
 
     def __enter__(self):
         cuda_sync()
-        self._t0 = time.perf_counter()
+        self._t0 = time.perf_counter() #perf_counter() 返回一个高精度计时器，单位是秒。
         return self
 
     def __exit__(self, *exc):
         cuda_sync()
-        self.elapsed = time.perf_counter() - self._t0
+        self.elapsed = time.perf_counter() - self._t0 #perf_counter() - self._t0 计算代码块执行时间，单位是秒。
         return False
-
-
-def banner(title: str):
-    """打印分节标题，让长输出好读一些。"""
-    print()
-    print("=" * 78)
-    print(f"  {title}")
-    print("=" * 78)

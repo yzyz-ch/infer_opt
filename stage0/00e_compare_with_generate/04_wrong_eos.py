@@ -1,18 +1,10 @@
 """04 停止条件写错会怎样。"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import _path  # noqa: F401
-
 import torch
-
-from common import banner
 
 
 def run(tokenizer, model, prompt_ids, eos_ids):
-    banner("4. 停止条件写错会怎样")
+    print("##### 4. 停止条件写错会怎样 ###")
     print("先看看这个模型的结束符到底是怎么配置的：")
     print(f"  config.json          里 eos_token_id = {model.config.eos_token_id}")
     print(
@@ -66,7 +58,6 @@ def run(tokenizer, model, prompt_ids, eos_ids):
       if next_id in eos_ids:   # eos_ids = set(generation_config.eos_token_id)
           break
 """)
-
 
 if __name__ == "__main__":
     from importlib import import_module

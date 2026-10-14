@@ -8,9 +8,7 @@
 import torch
 import torch.nn as nn
 
-from util import banner
-
-banner("5. nn.Module 与 state_dict")
+print("##### 5. nn.Module 与 state_dict ###")
 
 
 class TinyNet(nn.Module):
@@ -23,7 +21,6 @@ class TinyNet(nn.Module):
 
     def forward(self, x):
         return self.fc2(torch.relu(self.fc1(x)))
-
 
 net = TinyNet()
 print("一个 nn.Module 打印出来就是它的结构树：")

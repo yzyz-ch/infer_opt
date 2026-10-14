@@ -1,16 +1,8 @@
 """05 这一版浪费在哪。"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import _path  # noqa: F401
-
-from common import banner
-
 
 def run(records):
-    banner("5. 这一版浪费在哪")
+    print("##### 5. 这一版浪费在哪 ###")
     n = len(records)
     total_tokens_forwarded = sum(r["input_len"] for r in records)
     print(f"""
@@ -31,7 +23,7 @@ def run(records):
 下一步: 00d_kv_cache/ 把它实现出来，并回答"到底什么时候才划算"。
 """)
 
-    banner("动手改改看")
+    print("##### 动手改改看 ###")
     print("""
 1. 把 greedy_loop.py 里"拼回输入"那两行注释掉，看看会输出什么。
    （提示：模型每轮看到的上下文都一样）
@@ -49,7 +41,6 @@ def run(records):
 5. 04 的扫描里把 logits_to_keep=1 去掉，重新跑。
    4096 那一行的耗时变化大吗？（提示：lm_head 要输出 4096x151936 个数）
 """)
-
 
 if __name__ == "__main__":
     from importlib import import_module
